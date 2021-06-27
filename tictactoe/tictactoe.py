@@ -24,12 +24,12 @@ class TicTacToe:
         self.current_player = self.player
 
     def ask_user_symbol(self) -> None:
-        player = ""
-        while player not in ["X", "O"]:
-            player = input("Choose which symbol you'll be (X) or (O)")
-            player = player.upper()
-        ai = "O" if player == "X" else "X"
-        self.board = Board(player=player, ai=ai)
+        player_symbol = ""
+        while player_symbol not in ["X", "O"]:
+            player_symbol = input("Choose which symbol you'll be (X) or (O)")
+            player_symbol = player_symbol.upper()
+        ai_symbol = "O" if player_symbol == "X" else "X"
+        self.board = Board(player_symbol=player_symbol, ai_symbol=ai_symbol)
         self.player = HumanPlayer()
         self.ai = AIPlayer()
 
@@ -47,9 +47,11 @@ class TicTacToe:
 
         print("\n" * 5)
         if self.current_player.win:
-            print("Congratulations, you win!") if isinstance(
-                self.current_player, HumanPlayer
-            ) else print("Oh no, the computer won!")
+            print(self)
+            if isinstance(self.current_player, HumanPlayer):
+                print("Congratulations, you win!")
+            else:
+                print("Oh no, the computer won!")
             self.reset_game()
             return
         else:

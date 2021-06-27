@@ -19,15 +19,15 @@ class WinCondition(Enum):
 
 
 class Board:
-    def __init__(self, player: str, ai: str) -> None:
+    def __init__(self, player_symbol: str, ai_symbol: str) -> None:
         self.board_size = 9
         self.width = 3
         self.height = 3
         self.board = [
             BoardCell(
                 position=(floor(index / 3), index % 3),
-                player_symbol=player,
-                ai_symbol=ai,
+                player_symbol=player_symbol,
+                ai_symbol=ai_symbol,
             )
             for index in range(self.board_size)
         ]
